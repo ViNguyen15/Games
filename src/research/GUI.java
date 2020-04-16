@@ -201,9 +201,7 @@ import javafx.stage.Stage;
 	                    moveRight = block;
 	                    System.out.println("right");
 	                    //test of movement
-	                    if(x>=width-block)
-	                    	x=width-block;
-	                    	else
+	                    if(x<=width-block*2)
 	                    x += block;
 	                    break;
 	                    
