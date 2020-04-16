@@ -14,12 +14,13 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 	public class GUI extends Application {
-		int width = 400;
-		int height = 800;
 		int block = 40;
+		int width = block*10;
+		int height = block*20;
+		
 		int[] list = new int[100];
 		int moveLeft, moveRight;
-		int x = 0;
+		int x = width/2;
 		int y = 0;
 		
 		//creating the canvas
@@ -47,8 +48,8 @@ import javafx.stage.Stage;
 				
 				public void handle(long currentNanoTime) {
 					double t = (currentNanoTime - startNanoTime)/100000000;
-					x = width/2;
-					int y = (int)(t*40);
+					x=x;
+					y = (int)(t*block);
 					int i = 0;
 					gc.setFill(Color.WHITE);
 					gc.fillRect(0, 0, width, height);
@@ -79,7 +80,7 @@ import javafx.stage.Stage;
 		}
 		public int[] getRandomList() {
 			int num = random.nextInt(7);
-			int[] list = new int[100];
+			int[] list = new int[100000];
 			for(int i = 0; i < list.length; i++)
 				list[i] = num;
 			return list;
@@ -182,27 +183,37 @@ import javafx.stage.Stage;
 				break;
 			}
 		}
-				
+		//key pressed		
 	    private EventHandler<KeyEvent> keyPressed = new EventHandler<KeyEvent>() {
 	        @Override
 	        public void handle(KeyEvent event) {
 	            // start movement according to key pressed
 	            switch (event.getCode()) {
+	            
 	                case LEFT:
 	                    moveLeft = -block;
 	                    System.out.println("left");
+	                    //test of movement
+	                    x -= block;
 	                    break;
+	                    
 	                case RIGHT:
 	                    moveRight = block;
 	                    System.out.println("right");
+	                    //test of movement
+	                    if(x>=width-block)
+	                    	x=width-block;
+	                    	else
+	                    x += block;
 	                    break;
+	                    
 	                default:
 	                	System.out.println("testing");
 	                	break;
 	            }
 	        }
 	    };
-	    
+	    //key released
 	    private EventHandler<KeyEvent> keyReleased = new EventHandler<KeyEvent>() {
         @Override
         public void handle(KeyEvent event) {

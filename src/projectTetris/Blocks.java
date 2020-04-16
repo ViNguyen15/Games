@@ -1,14 +1,59 @@
-package tetris;
+package projectTetris;
 
+import java.util.Random;
+// fx imports
+import javafx.animation.AnimationTimer;
+import javafx.application.Application;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
-public class Tetrominoes{
-	
+
+
+public class Blocks {
+	//setting random
+	Random random = new Random();
+	int rand = 0;
 	public static int block = 40;
 	int width = block*10;
 	int height = block*20;
+	
+	//getting Tetris block
+	public void getTetromino(int x, int y) {
+		rand = random.nextInt(7);
+		System.out.println(rand);
+		switch(rand) {
+		case 0:
+			getO(x,y);
+			break;
+		case 1:
+			getI(x,y);
+			break;
+		case 2:
+			getL(x,y);
+			break;
+		case 3:
+			getJ(x,y);
+			break;
+		case 4:
+			getS(x,y);
+			break;
+		case 5:
+			getZ(x,y);
+			break;
+		case 6:
+			getT(x,y);
+			break;
+		default:
+			getBlock(x,y);
+			break;
+		}
+	}
 	
 	//creating the canvas
 	Canvas canvas = new Canvas(width, height);
@@ -76,4 +121,7 @@ public class Tetrominoes{
 		gc.strokeRect(x+5, y+5, block-10, block-10);
 		gc.strokeRect(x, y, block, block);
 	}
+	
+	
+	
 }
