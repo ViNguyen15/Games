@@ -47,7 +47,7 @@ import javafx.stage.Stage;
 			new AnimationTimer() {
 				
 				public void handle(long currentNanoTime) {
-					double t = (currentNanoTime - startNanoTime)/100000000;
+					double t = (currentNanoTime - startNanoTime)/1000000000;
 					x=x;
 					y = (int)(t*block);
 					int i = 0;
@@ -194,6 +194,7 @@ import javafx.stage.Stage;
 	                    moveLeft = -block;
 	                    System.out.println("left");
 	                    //test of movement
+	                    if(x>=0 +block*2)
 	                    x -= block;
 	                    break;
 	                    
